@@ -20,8 +20,6 @@
    <link rel="stylesheet" type="text/css" href="css/style.css">
    <!-- Responsive-->
    <link rel="stylesheet" href="css/responsive.css">
-   <!-- fevicon -->
-   <link rel="icon" href="images/fevicon.png" type="image/gif" />
    <!-- Scrollbar Custom CSS -->
    <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
    <!-- Tweaks for older IEs-->
@@ -42,7 +40,6 @@
 </head>
 
 <body>
-   <!-- banner bg main start -->
    <div class="banner_bg_main">
       <div class="logo_section">
          <div class="container">
@@ -53,21 +50,17 @@
             </div>
          </div>
       </div>
-      <!-- logo section end -->
-      <!-- header section start -->
-      <div class="header_section">
+      <div class="header_section row">
          <div class="container">
             <div class="containt_main">
                <div class="main">
-                  <!-- Another variation with a button -->
                   <div class="input-group">
-                     <input type="text" class="form-control" placeholder="Search this blog">
-                     <div class="input-group-append">
-                        <button class="btn btn-secondary" type="button"
-                           style="background-color: #f26522; border-color:#f26522 ">
-                           <i class="fa fa-search"></i>
-                        </button>
-                     </div>
+                     <select onchange="removeCards(event)" id="products" type="text" class="form-control col-4" placeholder="Search products">
+                        <option value="None">None</option>
+                     </select>
+                     <select onchange="removeCards(event)" id="brands" type="text" class="form-control col-4" placeholder="Search brands"></select>
+                     <select onchange="removeCards(event)" id="category" type="text" class="form-control col-4"
+                        placeholder="Search category"></select>
                   </div>
                </div>
                <div class="header_box">
@@ -83,8 +76,6 @@
             </div>
          </div>
       </div>
-      <!-- header section end -->
-      <!-- banner section start -->
       <div class="banner_section layout_padding">
          <div class="container">
             <div id="my_slider" class="carousel slide" data-ride="carousel">
@@ -107,8 +98,7 @@
             <div class="carousel-item active">
                <div class="container">
                   <h1 class="fashion_taital" style="padding: 2%;">Cosmetics</h1>
-                  <div class="fashion_section_2">
-                     <div class="row" id="card-container"></div>
+                  <div class="fashion_section_2" id="card-container">
                   </div>
                </div>
             </div>
@@ -131,31 +121,21 @@
                   </button>
                </div>
                <div class="modal-body" id="modal-body"></div>
-               <div class="modal-footer">
+               <div class="modal-footer" id="modal-footer">
+                  <span id="manufacturer"></span>
                   <button type="button" class="btn btn-primary" data-dismiss="modal" aria-label="Close">Close</button>
                </div>
             </div>
          </div>
       </div>
-      <!-- Javascript files-->
       <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
       <script src="js/jquery.min.js"></script>
       <script src="js/popper.min.js"></script>
       <script src="js/bootstrap.bundle.min.js"></script>
       <script src="js/jquery-3.0.0.min.js"></script>
       <script src="js/plugin.js"></script>
-      <!-- sidebar -->
       <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
       <script src="js/custom.js"></script>
-      <script>
-         function openNav() {
-            document.getElementById("mySidenav").style.width = "250px";
-         }
-
-         function closeNav() {
-            document.getElementById("mySidenav").style.width = "0";
-         }
-      </script>
       <script src="js/localStorageService.js"></script>
       <script src="js/productService.js"></script>
 </body>
