@@ -55,18 +55,18 @@
             <div class="containt_main">
                <div class="main">
                   <div class="input-group">
-                     <select onchange="removeCards(event)" id="products" type="text" class="form-control col-4" placeholder="Search products">
-                        <option value="None">None</option>
+                     <select onchange="search(event)" id="products" type="text" class="form-control col-4" placeholder="Search products">
+                        <option value="">None</option>
                      </select>
-                     <select onchange="removeCards(event)" id="brands" type="text" class="form-control col-4" placeholder="Search brands"></select>
-                     <select onchange="removeCards(event)" id="category" type="text" class="form-control col-4"
+                     <select onchange="search(event)" id="brands" type="text" class="form-control col-4" placeholder="Search brands"></select>
+                     <select onchange="search(event)" id="category" type="text" class="form-control col-4"
                         placeholder="Search category"></select>
                   </div>
                </div>
                <div class="header_box">
                   <div class="login_menu">
                      <ul>
-                        <li><a target="_blank" href="cart.html">
+                        <li><a href="cart.html">
                               <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                               <span class="padding_10">Cart</span></a>
                         </li>
@@ -138,6 +138,7 @@
       <script src="js/custom.js"></script>
       <script src="js/localStorageService.js"></script>
       <script src="js/productService.js"></script>
+      <script src="js/cart.js"></script>
 </body>
 
 </html>

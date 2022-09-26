@@ -1,13 +1,23 @@
 let products = []
 let brands = []
 let categories = []
+let orders = []
 
 
-function getAll() {
+function getAllProducts() {
     axios.get('https://localhost:44319/api/Products/GetAll')
         .then(function (response) {
             products = response.data;
             createProductCards()
+            let select = document.getElementById('products')
+
+            products.forEach(product => {
+                let option = document.createElement('option')
+                option.innerHTML = product.name
+                option.value = product.name
+                select.appendChild(option)
+            });
+            createSearchOptions();
         })
         .catch(function (error) {
             console.log(error);
@@ -87,21 +97,18 @@ function createProductCards() {
     });
 }
 
-function removeCards(e) {
+function search(e) {
 
-    let kur = document.getElementById('card-row')
-    kur.remove()
+    let cardRow = document.getElementById('card-row')
+    cardRow.remove()
 
-    let productInput = document.getElementById('products')
-    let productValue = productInput.value
+    let productInput = document.getElementById('products').value
 
-    let manufacturerInput = document.getElementById('brands')
-    let manufacturerValue = manufacturerInput.value
+    let manufacturerInput = document.getElementById('brands').value
 
-    let categoryInput = document.getElementById('category')
-    let categoryValue = categoryInput.value
+    let categoryInput = document.getElementById('category').value
 
-    axios.get(`https://localhost:44319/api/Products/GetAll?product=${productValue}&manufacturer=${manufacturerValue}&category=${categoryValue}`)
+    axios.get(`https://localhost:44319/api/Products/GetAll?product=${productInput}&manufacturer=${manufacturerInput}&category=${categoryInput}`)
         .then(function (response) {
             products = response.data;
             createProductCards()
@@ -128,8 +135,6 @@ function createModal(e, productId) {
     axios.get(`https://localhost:44319/api/Products/GetById?id=${productId}`)
         .then(function (response) {
             let product = response.data;
-            console.log(product)
-
             let modalBody = document.getElementById('modal-body');
 
             let text = document.getElementById('manufacturer')
@@ -144,7 +149,7 @@ function createModal(e, productId) {
         });
 }
 
-function createSearchOptions(product, manufacturer, category) {
+function createSearchOptions() {
     axios.get('https://localhost:44319/api/Products/GetManifactureres')
         .then(function (response) {
             brands = response.data
@@ -176,28 +181,11 @@ function createSearchOptions(product, manufacturer, category) {
         .catch(function (error) {
             console.log(error);
         });
-
-    axios.get('https://localhost:44319/api/Products/GetAll')
-        .then(function (response) {
-            products = response.data;
-            let select = document.getElementById('products')
-
-            products.forEach(product => {
-                let option = document.createElement('option')
-                option.innerHTML = product.name
-                option.value = product.name
-                select.appendChild(option)
-            });
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
 }
 
 function buy(e, id) {
     storageService.addToLocalStorage(id, "productItems")
 }
 
-getAll();
-
-createSearchOptions();
+getAllProducts();
+getAllOrders();

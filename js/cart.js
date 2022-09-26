@@ -13,6 +13,7 @@ function getPurchasedProducts() {
             console.log(error);
         });
 }
+
 getPurchasedProducts()
 
 function createProductRow() {
@@ -47,5 +48,28 @@ function createProductRow() {
 }
 
 function subtotal() {
-    return orderedProducts.map(x => x.price).reduce((a, b)=> a + b, 0)
+    return orderedProducts.map(x => x.price).reduce((a, b) => a + b, 0)
+}
+
+function create() {
+    let productIds = storageService.getFromLocalStorage("productIds");
+
+    if (productIds.length > 0) {
+        let price = subtotal()
+        axios.post('https://localhost:44319/api/Orders/Add', {
+            productIds: productIds,
+            price: price
+        })
+            .then(function (response) {
+                let body = document.getElementById('product')
+                let total = document.getElementById('total')
+                body.innerHTML = ''
+                total.innerHTML = ''
+                storageService.clearStorage("productIds")
+                window.location.href = 'index.html'
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
 }
