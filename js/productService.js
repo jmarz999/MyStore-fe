@@ -188,4 +188,3 @@ function buy(e, id) {
 }
 
 getAllProducts();
-getAllOrders();
