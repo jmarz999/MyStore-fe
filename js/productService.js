@@ -131,6 +131,8 @@ function removeFromCart(event, id) {
 }
 
 function createModal(e, productId) {
+    let row = document.getElementById('ingredient')
+    row.innerHTML = ''
 
     axios.get(`https://localhost:44319/api/Products/GetById?id=${productId}`)
         .then(function (response) {
@@ -140,6 +142,11 @@ function createModal(e, productId) {
             let text = document.getElementById('manufacturer')
             text.innerHTML = product.description
             modalBody.appendChild(text)
+
+            product.ingredients.forEach(ingredient => {
+                row.innerHTML = `Ingredients: ${ingredient.name}`
+                modalBody.appendChild(row)
+            });
 
             let title = document.getElementById('title')
             title.innerHTML = product.name + ` from ${product.manufacturers}`

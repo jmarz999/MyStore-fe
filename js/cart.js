@@ -78,6 +78,7 @@ function create() {
                 body.innerHTML = ''
                 total.innerHTML = ''
                 storageService.clearStorage("productIds")
+                alert("Purchase finished")
                 window.location.href = 'index.html'
             })
             .catch(function (error) {
